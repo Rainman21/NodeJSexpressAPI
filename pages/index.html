@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Main page - cors demo</title>
+    <script src="../node_modules/jquery/dist/jquery.js"></script>
+   </head>
+  <body>
+    this link won't work: https://api.covidtracking.com/v1/us/current.json
+
+    <pre id="div1"></pre>
+    <br>
+    <pre id="div2"></pre>
+  </body>
+ <script type="text/javascript" >
+    async function getUrl(ajaxurl, jquerySelector) {
+      let result;
+
+      try {
+        result = await $.ajax({
+          url: ajaxurl,
+          type: "GET",
+        });
+        jquerySelector.html(JSON.stringify(result,null,2))
+        return result;
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  </script>
+  <script>
+    let div1 = $("#div1");
+    div1.html("inner <string>html</strong> for div 1");
+    let div2 = $("#div2");
+    div2.html("inner <string>html</strong> for div 1");
+ 
+    let url1 = "https://api.covidtracking.com/v1/us/current.json";
+    let url2 = "https://api.covidtracking.com/v1/us/daily.json";
+    getUrl(url1, div1);
+    getUrl(url2, div2);
+  </script>
+</html>
