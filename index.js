@@ -70,6 +70,7 @@ async function getUrl(ajaxurl) {
 }
 console.log(__dirname);
 // app.use(express.static('pages'))
+app.use("/", express.static(__dirname ));
 app.use("/pages", express.static(__dirname + "/pages"));
 app.use("/scripts", express.static(__dirname + "/scripts"));
 app.use("/data", express.static(__dirname + "/data"));
